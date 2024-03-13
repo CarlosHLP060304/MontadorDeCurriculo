@@ -1,0 +1,11 @@
+label{
+    margin: 10px;
+}
+.preview{
+    width: 100%;
+}
+.preview_divisoria{
+    width: 70%;
+    height: 2px;
+    background-color: black;
+}

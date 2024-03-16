@@ -1,0 +1,55 @@
+label{
+    margin: 10px;
+}
+
+.sessao_preenchimento_dados_curriculo h1 {
+    text-align: center;
+}
+[div-dados-usuario],.baixar_curriculo,.sub_div_dados_usuario,.sub_div_repeticoes{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+[div-dados-usuario],.baixar_curriculo{
+    padding: 10px;
+}
+
+[div-dados-usuario] input,textarea{
+    width: 100%;
+    margin: 10px;
+}
+
+.io_button{
+    background-color: #ffc107;
+    width: 100%;
+}
+.btn_adicionar{
+    background-color: aqua;
+    width: 90%;
+}
+
+.btn_remover{
+    background-color: red;
+    width: 90%;
+}
+
+.io_button,.btn_adicionar,.btn_remover{
+    border: solid 0px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.preview{
+    width: 100%;
+}
+.preview_divisoria{
+    width: 70%;
+    height: 2px;
+    background-color: black;
+}
+
+
+
+
+

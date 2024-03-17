@@ -15,26 +15,26 @@
         <div div-dados-usuario = "nome">
             <button class="io_button" io_button="nome">Nome</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_nome">
-                <input type="text" class="dados_usuario nome" placeholder="Nome">
+                <input type="text" class="dados_usuario nome" placeholder="Nome" id="nome">
             </div>
         </div>
         <div div-dados-usuario = "area_desejada">
             <button class="io_button" io_button="area_desejada">Área Desejada</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_area_desejada">
-                <input type="text" class="dados_usuario area_desejada" placeholder="Área Desejada">
+                <input type="text" class="dados_usuario area_desejada" placeholder="Área Desejada" id="area_desejada">
             </div>
         </div>
         <div div-dados-usuario = "descricao_pessoal">
             <button class="io_button"  io_button="descricao_pessoal">Descrição Pessoal</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_descricao_pessoal">
-                <textarea name="descricao_pessoal" id="descricao_pessoal" cols="50" rows="10" class="m-5" class="dados_usuario descricao_pessoal">
+                <textarea name="descricao_pessoal" id="descricao_pessoal"  class="m-5" class="dados_usuario descricao_pessoal">
                 </textarea>`
             </div>
         </div>
         <div div-dados-usuario = "projetos">
             <button class="io_button" io_button="projetos">Projetos</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_projetos">
-                <input type="text" class="dados_usuario projetos nome_projeto" placeholder="Nome do projeto">
+                <input type="text" class="dados_usuario projetos nome_projeto" placeholder="Nome do projeto" id="nome_formacao">
                 <input type="text" class="dados_usuario projetos descricao_projeto" placeholder="Descrição do projeto">
                 <button class="btn_adicionar" id="btn_adicionar_projetos">Adicionar Projetos</button>
                 <button class="btn_remover" id="btn_remover_projetos">Remover todos os Projetos</button>
@@ -43,8 +43,10 @@
         <div div-dados-usuario = "formacao">
             <button class="io_button" io_button="formacao">Formação</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_formacao">
-                <input type="text" class="dados_usuario formacao" placeholder="Nome Formação">
-                <input type="text" class="dados_usuario formacao" placeholder="Duração">
+                <input type="text" class="dados_usuario formacao" placeholder="Nome Instituição" id="nome_instituicao">
+                <input type="text" class="dados_usuario formacao" placeholder="Nome do Curso" id="nome_curso">
+                <input type="text" class="dados_usuario formacao" placeholder="Data Início" id="data_inicio">
+                <input type="text" class="dados_usuario formacao" placeholder="Data Término" id="data_termino">
                 <button class="btn_adicionar" id="btn_adicionar_formacao">Adicionar Formação</button>
                 <button class="btn_remover" id="btn_remover_formacao">Remover todas as Formações</button>
             </div>
@@ -70,17 +72,14 @@
         <div div-dados-usuario = "idiomas">
             <button class="io_button"  io_button="idiomas">Idiomas</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_idiomas">
-                <input type="text" class="dados_usuario idiomas" placeholder="Idioma">
-                <select name="" id="" class="mb-3">
+                <input type="text" class="dados_usuario idiomas" placeholder="Nome do idioma" id="nome_idioma">
+                <select name="" id="nivel" class="mb-3">
                     <option value="">Nível</option>
-                    <option value="">Iniciante</option>
-                    <option value="">Intermediário</option>
-                    <option value="">Avançado</option>
-                    <option value="">Nativo</option>
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                    <option value="Nativo">Nativo</option>
                 </select>
-                <div class="sub_div_idiomas_repeticoes">
-
-                </div>
                 <button class="btn_adicionar" id="btn_adicionar_idiomas">Adicionar idioma</button>
                 <button class="btn_remover" id="btn_remover_idiomas">Remover todos os idiomas</button>
             </div>

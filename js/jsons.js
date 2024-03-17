@@ -21,7 +21,22 @@ let dados_usuario_json = {
             "descricao": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi laboriosam obcaecati soluta esse velit nesciunt libero provident maiores blanditiis at molestiae quamvoluptas reprehenderit beatae eum adipisci, veniam voluptates quas, nostrum vitae"
         }
     ],
-    "formacao": [],
+    "formacao": [
+        {
+            "nomeInstituicao":"FIAP",
+            "nomeCurso": "Sistemas de Informação",
+            "data_inicio":"março 2022",
+            "data_termino":"dezembro 2025"
+        }
+    ],
     "competencias": [],
-    "idiomas": []
+    "idiomas": [{
+        "nome":"Português",
+        "nivel":"Nativo"
+    },
+    {
+        "nome":"Inglês",
+        "nivel":"Intermediário"
+    }
+]
 }

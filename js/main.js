@@ -6,61 +6,35 @@ const btns_adicionar  = document.querySelectorAll(".btn_adicionar")
 
 //constantes relacionadas a ações no curriculo
 const preview = document.querySelector("#preview")
+const divsDadosUsuario = document.querySelectorAll("[div-dados-usuario]")
 
-const divAdicionarElementos = document.createElement("div")
+divsDadosUsuario.forEach(
+    divDadosUsuario => 
+        divDadosUsuario.querySelectorAll("input").forEach(
+            input=>
+             input.addEventListener("keyup",(e)=>{
+                console.log(input.id)
+                dados_usuario_json[input.id] = input.value
+                mudaCurriculo(preview,dados_usuario_json)
+            }
+
+        )))
 
 
 
 
 
+function recebeInformacoesUsuario(){
+
+} 
 
 
 
 function main() {
     abreEFechaSubDivsDadosUsuario(botoes_io)
-    adicionarElementosParteMenuLateral(btns_adicionar,sub_divs_dados_usuario)
+    adicionaElementosCurriculo(btns_adicionar,sub_divs_dados_usuario,dados_usuario_json)
+    mudaCurriculo(preview,dados_usuario_json)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// preview.innerHTML = mudaTextoHTML(dados_usuario_json)
-
-
-// //deixa os setores dos dados do usuário dinâmicos
-// div_dados_usuario.forEach(
-//     div =>{
-//         const button = div.querySelector("button")
-//         button.addEventListener("click",()=>{
-//             nome_do_campo = div.getAttribute("div-dados-usuario")
-//         div.innerHTML = conteudo_campos_json[nome_do_campo]
-        
-//         const dadosUsuario = document.querySelectorAll(".dados_usuario")
-//         atualizaCurriculo(dadosUsuario)
-//     }) 
-//     }    
-// )
-
-
-
-
-
-
-
-
 
 
 

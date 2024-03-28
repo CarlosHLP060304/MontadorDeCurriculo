@@ -1,5 +1,10 @@
 function mudaCurriculo(preview,dados_usuario) {
-    preview.innerHTML =  `
+    preview.innerHTML = retornaCurriculo(dados_usuario)
+}
+
+
+function retornaCurriculo(dados_usuario){
+    return  `
     <div>
     <h1>${dados_usuario.nome}</h1>
     <h2>${dados_usuario.area_desejada}</h2>
@@ -14,27 +19,28 @@ function mudaCurriculo(preview,dados_usuario) {
         <div>
             <h3>Contato</h3>
             <ul>
-                <li>${dados_usuario.email}</li>
-                <li>${dados_usuario.telefone}</li>
-                <li>${dados_usuario.linkedin}</li>
-                <li>${dados_usuario.github}</li>
-                <li>${dados_usuario.endereco}</li>
+                ${dados_usuario.contatos.map(
+                   contato =>  `<li>${contato.tipo} : ${contato.valor}</li>` 
+                ).join("")}
             </ul>
         </div>
         <div>
             <h3>Idiomas</h3>
             <ul id="lista_idiomas">
-                <li>${dados_usuario.idiomas[0].nome} - ${dados_usuario.idiomas[0].nivel}</li>
-                <li>${dados_usuario.idiomas[1].nome} - ${dados_usuario.idiomas[1].nivel}</li>
+                ${dados_usuario.idiomas.map(
+                    idioma => `<li> ${idioma.nome} - ${idioma.nivel}</li>`
+                ).join("")}
+                
             </ul>
         </div>
         <div>
             <h3>Competências</h3>
             <ul id="lista_competencias">
-                <li>Java</li>
-                <li>Python</li>
-                <li>HTML</li>
-                <li>CSS</li>
+                ${dados_usuario.competencias.map(
+                    competencia =>{
+                        return `<li>${competencia}</li>`
+                    }
+                ).join("")}
             </ul>
         </div>
     
@@ -43,44 +49,47 @@ function mudaCurriculo(preview,dados_usuario) {
         <div>
             <ul class="list-unstyled px-3">
                 <h3>Projetos</h3>
-                <li>
-                    <h4>${dados_usuario.projetos[0].nome}</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi laboriosam obcaecati
-                        soluta esse velit nesciunt libero provident maiores blanditiis at molestiae quam
-                        voluptas reprehenderit beatae eum adipisci, veniam voluptates quas, nostrum vitae
-                       </p>
-                </li>
-                <li>
-                    <h4>Projeto Conta-aí</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi laboriosam obcaecati
-                        soluta esse velit nesciunt libero provident maiores blanditiis at molestiae quam
-                        voluptas reprehenderit beatae eum adipisci, veniam voluptates quas, nostrum vitae
-                      </p>
-                </li>
-                <li>
-                    <h4>Projeto 123</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi laboriosam obcaecati
-                        soluta esse velit nesciunt libero provident maiores blanditiis at molestiae quam
-                        voluptas reprehenderit beatae eum adipisci.</p>
-                </li>
+                ${
+                    dados_usuario.projetos.map(
+                        projeto=>{
+                             return `
+                            <li>
+                            <h4>${projeto.nome}</h4>
+                            <p>${projeto.descricao}</p>
+                            </li>
+                        
+                        `
+                    }
+                        
+                    ).join("")
+                }
+                
             </ul>
         </div>
     
         <div>
             <ul id = "lista_formacoes">
                 <h3>Formação Acadêmica</h3>
-                <li>
-                    <h4> ${dados_usuario.formacao[0].nomeInstituicao}</h4>
-                    <p>${dados_usuario.formacao[0].nomeCurso}</p>
-                    <p>Período: ${dados_usuario.formacao[0].data_inicio} até ${dados_usuario.formacao[0].data_termino}</p>
-                </li>
+                ${dados_usuario.formacao.map(
+                    formacao=>`
+                    <li>
+                    <h4> ${formacao.nomeInstituicao}</h4>
+                    <p>${formacao.nomeCurso}</p>
+                    <p>Período: ${formacao.data_inicio} até ${formacao.data_termino}</p>
+                </li>`
+                )}
+               
             </ul>
             
         </div>
     </div>
     </div>
     `
+}
 
+function armazenaNoLocalStorage(dados_usuario) {
+    let curriculoString = retornaCurriculo(dados_usuario)
+    localStorage.setItem("curriculo",curriculoString)
 }
 
 
@@ -94,11 +103,16 @@ function adicionaElementosCurriculo(btns_adicionar,sub_divs_dados_usuario,dados_
                     if(final_div_id === final_btn_id){
                         switch (final_div_id) {
                             case "idiomas":
-                                adicionaIdiomaCurriculo(dados_usuario)  
+                                adicionaIdiomaCurriculo(preview,dados_usuario)  
                                 break;
                             case "formacao":
-                                adicionaFormacaoCurriculo(dados_usuario)
+                                adicionaFormacaoCurriculo(preview,dados_usuario)
                                 break;
+                            case "competencias":
+                                adicionaCompetenciaCurriculo(preview,dados_usuario)
+                                break;
+                            case "projetos":
+                                adicionaProjetoCurriculo(preview,dados_usuario)
                             default:
                                 break;
                         }
@@ -116,49 +130,119 @@ function adicionaElementosCurriculo(btns_adicionar,sub_divs_dados_usuario,dados_
 
 
 
-function adicionaIdiomaJson(nome,nivel,dados_usuario) {
+function adicionaIdiomaCurriculo(preview,dados_usuario) {
+    const nome_idioma = document.getElementById("nome_idioma").value
+    const nivel =  document.querySelector("#nivel").value
     dados_usuario.idiomas.push({
-        "nome":nome,
+        "nome":nome_idioma,
         "nivel":nivel
     })
+    mudaCurriculo(preview,dados_usuario)
 }
 
-function adicionaFormacaoJson(nome_instituicao,nome_curso,data_inicio,data_termino,dados_usuario) {
+function adicionaFormacaoCurriculo(preview,dados_usuario) {
+    const nome_instituicao = document.getElementById("nome_instituicao").value
+    const nome_curso =  document.querySelector("#nome_curso").value
+    const data_inicio = document.getElementById("data_inicio").value
+    const data_termino = document.getElementById("data_termino").value
     dados_usuario.formacao.push({
         "nomeInstituicao":nome_instituicao,
         "nomeCurso": nome_curso,
         "data_inicio": data_inicio,
         "data_termino": data_termino
     })
+    mudaCurriculo(preview,dados_usuario) 
+}
+
+function adicionaCompetenciaCurriculo(preview,dados_usuario) {
+    const competencia = document.getElementById("competencia").value
+    dados_usuario.competencias.push(competencia)
+    mudaCurriculo(preview,dados_usuario)
+}
+
+function adicionaProjetoCurriculo(preview,dados_usuario) {
+    const nome = document.getElementById("nome_projeto").value
+    const descricao = document.getElementById("descricao_projeto").value
+    dados_usuario.projetos.push({
+        "nome": nome,
+        "descricao": descricao
+    })
+    mudaCurriculo(preview,dados_usuario)
+}
+
+function apagarDadosDasSessoesCurriculo(btns_remover,sub_divs_dados_usuario,dados_usuario) {
+    btns_remover.forEach(
+        btn_remover => btn_remover.addEventListener("click",()=>{
+            sub_divs_dados_usuario.forEach(
+                sub_div_dados_usuario => { 
+                    final_div_id = sub_div_dados_usuario.id.split("sub_div_")[1]
+                    final_btn_id = btn_remover.id.split("btn_remover_")[1]
+                    console.log(final_div_id)
+                    console.log(final_btn_id)
+                    if(final_div_id === final_btn_id){
+                        switch (final_div_id) {
+                            case "idiomas":
+                                removerItensJson(preview,dados_usuario,"idiomas")  
+                                break;
+                            case "formacao":
+                                removerItensJson(preview,dados_usuario,"formacao")
+                                break;
+                            case "competencias":
+                                removerItensJson(preview,dados_usuario,"competencias")
+                                break;
+                            case "projetos":
+                                removerItensJson(preview,dados_usuario,"projetos")
+                            default:
+                                break;
+                        }
+                        
+                    }
+                }
+            )
+        })
+    )
+}
+
+function mudaItensUnicosCurriculo(divsDadosUsuario) {
+    divsDadosUsuario.forEach(
+        divDadosUsuario =>{
+            divDadosUsuario.querySelectorAll("input").forEach(
+                input =>
+                    input.addEventListener("keyup", (e) => {
+    
+                        dados_usuario_json[input.id] = input.value
+                        console.log(input.id)
+                        mudaCurriculo(preview, dados_usuario_json)
+                    }
+    
+                    )
+            )
+                
+            divDadosUsuario.querySelectorAll("textarea").forEach(
+                textarea =>
+                    textarea.addEventListener("keyup", (e) => {
+                        dados_usuario_json[textarea.id] = textarea.value
+                        mudaCurriculo(preview, dados_usuario_json)
+                    }
+            
+                    )
+            )
+        
+        }
+    
+    )
+}
+
+function removerItensJson(preview,dados_usuario,sessao){
+    dados_usuario[sessao] = []
+    mudaCurriculo(preview,dados_usuario)
 }
 
 
-
-function adicionaIdiomaCurriculo(dados_usuario) {
-    const nome_idioma = document.getElementById("nome_idioma").value
-    const nivel =  document.querySelector("#nivel").value
-    const lista_idiomas = document.getElementById("lista_idiomas")
-    adicionaIdiomaJson(nome_idioma,nivel,dados_usuario)
-    console.log(dados_usuario.idiomas)
-    lista_idiomas.innerHTML += `
-        <li> ${dados_usuario.idiomas[dados_usuario.idiomas.length-1].nome} - ${dados_usuario.idiomas[dados_usuario.idiomas.length-1].nivel}</li>
-    `    
+function baixarCurriculo(dados_usuario){
+    document.getElementById("baixar_curriculo").addEventListener(
+        "click",()=>{
+            armazenaNoLocalStorage(dados_usuario)
+        }
+    )
 }
-
-function adicionaFormacaoCurriculo(dados_usuario) {
-    const nome_instituicao = document.getElementById("nome_instituicao").value
-    const nome_curso =  document.querySelector("#nome_curso").value
-    const data_inicio = document.getElementById("data_inicio").value
-    const data_termino = document.getElementById("data_termino").value
-    const lista_formacoes = document.getElementById("lista_formacoes")
-    adicionaFormacaoJson(nome_instituicao,nome_curso,data_inicio,data_termino,dados_usuario)
-    numeroDeFormacoesMenos1 = dados_usuario.formacao.length -1
-    lista_formacoes.innerHTML += `
-    <li>
-    <h4> ${dados_usuario.formacao[numeroDeFormacoesMenos1].nomeInstituicao}</h4>
-                    <p>${dados_usuario.formacao[numeroDeFormacoesMenos1].nomeCurso}</p>
-                    <p>Período: ${dados_usuario.formacao[numeroDeFormacoesMenos1].data_inicio} até ${dados_usuario.formacao[numeroDeFormacoesMenos1].data_termino}</p>
-    </li>
-    `    
-}
-

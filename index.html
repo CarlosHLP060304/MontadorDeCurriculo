@@ -27,15 +27,15 @@
         <div div-dados-usuario = "descricao_pessoal">
             <button class="io_button"  io_button="descricao_pessoal">Descrição Pessoal</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_descricao_pessoal">
-                <textarea name="descricao_pessoal" id="descricao_pessoal"  class="m-5" class="dados_usuario descricao_pessoal">
+                <textarea name="descricao_pessoal" id="descricao_pessoal"  class="m-5" class="dados_usuario descricao_pessoal" cols="30" rows="20">
                 </textarea>`
             </div>
         </div>
         <div div-dados-usuario = "projetos">
             <button class="io_button" io_button="projetos">Projetos</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_projetos">
-                <input type="text" class="dados_usuario projetos nome_projeto" placeholder="Nome do projeto" id="nome_formacao">
-                <input type="text" class="dados_usuario projetos descricao_projeto" placeholder="Descrição do projeto">
+                <input type="text" class="dados_usuario projetos nome_projeto" placeholder="Nome do projeto" id="nome_projeto">
+                <textarea type="text" class="dados_usuario projetos descricao_projeto" placeholder="Descrição do projeto" id="descricao_projeto"></textarea>
                 <button class="btn_adicionar" id="btn_adicionar_projetos">Adicionar Projetos</button>
                 <button class="btn_remover" id="btn_remover_projetos">Remover todos os Projetos</button>
             </div>
@@ -54,7 +54,7 @@
         <div div-dados-usuario = "competencias">
             <button class="io_button" io_button="competencias">Competências</button>
             <div class="sub_div_dados_usuario d-none" id="sub_div_competencias">           
-                <input type="text" class="dados_usuario competencias">
+                <input type="text" class="dados_usuario competencias" id="competencia">
                 <button class="btn_adicionar" id="btn_adicionar_competencias">Adicionar Competências</button>
                 <button class="btn_remover" id="btn_remover_competencias">Remover Competências</button>
             </div>
@@ -62,11 +62,10 @@
         <div div-dados-usuario = "contato">
            <button class="io_button" io_button="contato">Contato</button>
            <div class="sub_div_dados_usuario d-none" id="sub_div_contato">
-               <input type="text" class="dados_usuario contato telefone" placeholder="Telefone">
-               <input type="text" class="dados_usuario contato email" placeholder="Email">
-               <input type="text" class="dados_usuario contato linkedin" placeholder="Linkedin">
-               <input type="text" class="dados_usuario contato endereco" placeholder="Endereço">
-               <input type="text" class="dados_usuario contato github" placeholder = "Github">
+               <input type="text" class="dados_usuario contato telefone" placeholder="Tipo de Contato">
+               <input type="text" class="dados_usuario contato email" placeholder="Dado do Contato">
+               <button class="btn_adicionar" id="btn_adicionar_contato">Adicionar Contato</button>
+               <button class="btn_remover" id="btn_remover_contato">Remover Contatos</button>
            </div>
         </div>
         <div div-dados-usuario = "idiomas">
@@ -85,17 +84,18 @@
             </div>
          </div>
          <div class="baixar_curriculo" id="baixar_curriculo">
-            <button class="btn btn-primary">Baixar currículo</button>
+            <button class="btn btn-primary"><a type="download" href="./curriculo.html" class="text-light">Baixar currículo<a></button>
          </div>
     </section>
     <section class="preview p-2" id="preview">
        
     </section>
-    
+    <script src="js/variaveisEConstantes.js"></script>
     <script src="js/funcoes_menu_lateral.js"></script>
     <script src="./js/funcoes_curriculo.js"></script>
     <script src="./js/jsons.js"></script>
     <script src="./js/main.js"></script>
+   
 </body>
 
 </html>

@@ -10,7 +10,7 @@
 </head>
 
 <body class="d-flex">
-    <section class="sessao_preenchimento_dados_curriculo bg-success" class="col-2 p-2">
+    <section class="sessao_preenchimento_dados_curriculo bg-success" class="col-2">
         <h1>Dados do Candidato</h1>
         <div div-dados-usuario = "nome">
             <button class="io_button" io_button="nome">Nome</button>
@@ -62,8 +62,8 @@
         <div div-dados-usuario = "contato">
            <button class="io_button" io_button="contato">Contato</button>
            <div class="sub_div_dados_usuario d-none" id="sub_div_contato">
-               <input type="text" class="dados_usuario contato telefone" placeholder="Tipo de Contato">
-               <input type="text" class="dados_usuario contato email" placeholder="Dado do Contato">
+               <input type="text" class="dados_usuario contato tipo_contato" placeholder="Tipo de Contato" id="tipo_contato">
+               <input type="text" class="dados_usuario contato dados_usuario" placeholder="Dado do Contato" id="dado_contato">
                <button class="btn_adicionar" id="btn_adicionar_contato">Adicionar Contato</button>
                <button class="btn_remover" id="btn_remover_contato">Remover Contatos</button>
            </div>
@@ -84,7 +84,7 @@
             </div>
          </div>
          <div class="baixar_curriculo" id="baixar_curriculo">
-            <button class="btn btn-primary"><a type="download" href="./curriculo.html" class="text-light">Baixar currículo<a></button>
+            <button class="btn btn-primary">Baixar currículo</button>
          </div>
     </section>
     <section class="preview p-2" id="preview">

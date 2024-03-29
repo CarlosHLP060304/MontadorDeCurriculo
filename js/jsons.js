@@ -4,20 +4,20 @@ let dados_usuario_json = {
     "area_desejada": "Desenvolvimento de Software",
     "descricao_pessoal": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, illum hic. Possimus ullam, dolores enim eveniet quaerat tempora saepe, accusamus nisi non delectus quae omnis inventore sint culpa harum quibusdam!",
     "contatos":[
-        {   "tipo": "Telefone",
-            "valor": "(11) 95465-7283"
+        {   "tipo_contato": "Telefone",
+            "dado_contato": "(11) 95465-7283"
         },
-        {   "tipo": "Email",
-            "valor": "carlosponchirolli655@gmail.com"
+        {   "tipo_contato": "Email",
+            "dado_contato": "carlosponchirolli655@gmail.com"
         },
-        {   "tipo": "Linkedin",
-            "valor": "linkedin.com/in/carlos-ponchirolli"
+        {   "tipo_contato": "Linkedin",
+            "dado_contato": "linkedin.com/in/carlos-ponchirolli"
         },
-        {   "tipo": "Endereco",
-            "valor": "Belém, São Paulo/SP"
+        {   "tipo_contato": "Endereco",
+            "dado_contato": "Belém, São Paulo/SP"
         },
-        {   "tipo": "Github",
-            "valor": "github.com/CarlosHLP060304"
+        {   "tipo_contato": "Github",
+            "dado_contato": "github.com/CarlosHLP060304"
         }
     ],
     "projetos": [{

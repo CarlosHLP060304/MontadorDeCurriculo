@@ -20,7 +20,7 @@ function retornaCurriculo(dados_usuario){
             <h3>Contato</h3>
             <ul>
                 ${dados_usuario.contatos.map(
-                   contato =>  `<li>${contato.tipo} : ${contato.valor}</li>` 
+                   contato =>  `<li>${contato.tipo_contato} : ${contato.dado_contato}</li>` 
                 ).join("")}
             </ul>
         </div>
@@ -113,6 +113,10 @@ function adicionaElementosCurriculo(btns_adicionar,sub_divs_dados_usuario,dados_
                                 break;
                             case "projetos":
                                 adicionaProjetoCurriculo(preview,dados_usuario)
+                                break
+                            case "contato":
+                                adicionaContatoCurriculo(preview,dados_usuario)
+                                break
                             default:
                                 break;
                         }
@@ -128,7 +132,15 @@ function adicionaElementosCurriculo(btns_adicionar,sub_divs_dados_usuario,dados_
     )
 }
 
-
+function adicionaContatoCurriculo(preview,dados_usuario){
+    const tipo_contato = document.getElementById("tipo_contato").value
+    const dado_contato =  document.querySelector("#dado_contato").value
+    dados_usuario.contatos.push({
+        "tipo_contato":tipo_contato,
+        "dado_contato":dado_contato
+    })
+    mudaCurriculo(preview,dados_usuario)
+}
 
 function adicionaIdiomaCurriculo(preview,dados_usuario) {
     const nome_idioma = document.getElementById("nome_idioma").value
@@ -192,6 +204,10 @@ function apagarDadosDasSessoesCurriculo(btns_remover,sub_divs_dados_usuario,dado
                                 break;
                             case "projetos":
                                 removerItensJson(preview,dados_usuario,"projetos")
+                                break;
+                            case "contato":
+                                removerItensJson(preview,dados_usuario,"contatos")
+                                break;
                             default:
                                 break;
                         }
@@ -243,6 +259,8 @@ function baixarCurriculo(dados_usuario){
     document.getElementById("baixar_curriculo").addEventListener(
         "click",()=>{
             armazenaNoLocalStorage(dados_usuario)
+            window.open("../curriculo.html")
         }
     )
 }
+

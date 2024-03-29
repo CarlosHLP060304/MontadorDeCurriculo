@@ -8,10 +8,11 @@
 
 </head>
 <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         document.body.innerHTML = localStorage.getItem("curriculo")
         document.body.innerHTML += `
-        <a download="curriculo.html"><button class="btn btn-primary">Baixar currículo</button></a>` 
+        <button class="btn btn-primary" href="./curriculo.html" download="Curriculo.html">Baixar currículo</button>` 
     </script>
 </body>
 

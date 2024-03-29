@@ -259,7 +259,6 @@ function baixarCurriculo(dados_usuario){
     document.getElementById("baixar_curriculo").addEventListener(
         "click",()=>{
             armazenaNoLocalStorage(dados_usuario)
-            window.open("./curriculo.html")
         }
     )
 }

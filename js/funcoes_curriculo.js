@@ -77,7 +77,7 @@ function retornaCurriculo(dados_usuario){
                     <p>${formacao.nomeCurso}</p>
                     <p>Período: ${formacao.data_inicio} até ${formacao.data_termino}</p>
                 </li>`
-                )}
+                ).join("")}
                
             </ul>
             

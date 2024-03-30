@@ -256,9 +256,11 @@ function removerItensJson(preview,dados_usuario,sessao){
 
 
 function baixarCurriculo(dados_usuario){
-    document.getElementById("baixar_curriculo").addEventListener(
+    const div_baixar_curriculo = document.getElementById("baixar_curriculo")
+    div_baixar_curriculo.addEventListener(
         "click",()=>{
             armazenaNoLocalStorage(dados_usuario)
+            div_baixar_curriculo.firstChild.setAttribute("value",localStorage.getItem("curriculo"))
         }
     )
 }

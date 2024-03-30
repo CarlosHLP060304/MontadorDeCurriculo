@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <title>Currículo</title>
+    <!-- <link rel="stylesheet" href="./css/bootstrap.css"> -->
+
 </head>
 <body>
-     
     <script>
         document.body.innerHTML = localStorage.getItem("curriculo")
+        const texto_extra =  `<div class="d-flex justify-content-center bg-warning align-itens-center p-2" id="texto_extra">
+              <p>Aperte as teclas <button>Ctrl</button>+<button>S</button> para baixar o currículo</p>  
+          <div>`
+        document.body.innerHTML += texto_extra
+        //let teclasDigitadas = []
+        document.addEventListener("keyup",(e)=>{
+          //teclasDigitadas.push(e.key)
+          console.log(e.key)
+          //let textoFinal = `${teclasDigitadas[teclasDigitadas.length-1]}${teclasDigitadas[teclasDigitadas-2]}`.toLowerCase 
+          if(e.key==="s"){
+            document.body.removeChild(document.getElementById("texto_extra"))
+          }
+        })
     </script>
-    <style>
-        @charset "UTF-8";
+</body>
+
+<style>
+    @charset "UTF-8";
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
@@ -12070,7 +12084,8 @@ textarea.form-control-lg {
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
-    </style>
-    
-</body>
+</style>
 </html>
+
+
+

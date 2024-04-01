@@ -27,30 +27,34 @@
         })
     </script>
     <script>
-var opt = {
-  margin:       [0, 1, 1, 0], // Margens: superior, direita, inferior, esquerda
-  filename:     'curriculo.pdf',
-  image:        { type: 'jpeg', quality: 1 },
-  html2canvas:  { 
-    scale: 1, // Redimensiona o conteúdo HTML para caber dentro do PDF
-    width: '100%', // Defina a largura do HTML como 100% para garantir que ele caiba dentro do PDF
-    height: '100%', // Defina a altura do HTML como 100% para garantir que ele caiba dentro do PDF
-    useCORS: true, // Habilitar o uso de CORS para imagens externas
-    scrollX: 0, // Definir scrollX e scrollY para 0 para garantir que a página seja renderizada a partir do topo
-    scrollY: 0
-  },
-  jsPDF:        { unit: 'cm', format: 'letter', orientation: 'portrait' } // Unidade: centímetros
-};
+
 
 const baixar = () => {
-  document.querySelectorAll('*').forEach(element => {
-    element.style.boxSizing = 'border-box';
-    element.style.overflow = 'visible'; // Garante que não há estilos de overflow que possam ocultar o conteúdo
-  });
+  
+  
+  var element = document.querySelector('html'); // Get the HTML element you want to convert to PDF
+
   document.body.removeChild(document.getElementById("texto_extra"));
   var element = document.querySelector('html');
-  html2pdf().set(opt).from(element).save();
-};
+
+html2pdf().set({
+    html2canvas: { scale: 2 },
+    margin: 1,
+    filename: 'my_document.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 4 },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+}).from(element).save();
+  
+  
+  };
+
+
+
+
+
+
+
 
       document.querySelector("#btn_baixar_pdf").addEventListener(
         "click",baixar

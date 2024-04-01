@@ -27,18 +27,19 @@
         })
     </script>
     <script>
-      var opt = {
-      margin:       [0,1,1,0],
-      filename:     'curriculo.pdf',
-      image:        { type: 'jpeg', quality: 1 },
-      html2canvas:  { scale: 1 },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
-      const baixar = ()=>{
-        document.body.removeChild(document.getElementById("texto_extra"))
-        html2pdf().set({
-          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-        });
+     var opt = {
+  margin:       [0, 1, 1, 0],
+  filename:     'curriculo.pdf',
+  image:        { type: 'jpeg', quality: 1 },
+  html2canvas:  { scale: 1, width: document.body.scrollWidth, height: document.body.scrollHeight },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+};
+
+const baixar = () => {
+  document.body.removeChild(document.getElementById("texto_extra"));
+  var element = document.querySelector('html');
+  html2pdf().set(opt).from(element).save();
+};
         var element = document.querySelector('html');
         html2pdf().set(opt).from(element).save();
         ;

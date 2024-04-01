@@ -27,14 +27,14 @@
         })
     </script>
     <script>
-   var opt = {
+var opt = {
   margin:       [0, 1, 1, 0], // Margens: superior, direita, inferior, esquerda
   filename:     'curriculo.pdf',
   image:        { type: 'jpeg', quality: 1 },
   html2canvas:  { 
-    scale: 1, 
-    width: document.body.scrollWidth, 
-    height: document.body.scrollHeight,
+    scale: 1, // Redimensiona o conteúdo HTML para caber dentro do PDF
+    width: '100%', // Defina a largura do HTML como 100% para garantir que ele caiba dentro do PDF
+    height: '100%', // Defina a altura do HTML como 100% para garantir que ele caiba dentro do PDF
     useCORS: true, // Habilitar o uso de CORS para imagens externas
     scrollX: 0, // Definir scrollX e scrollY para 0 para garantir que a página seja renderizada a partir do topo
     scrollY: 0
@@ -45,11 +45,13 @@
 const baixar = () => {
   document.querySelectorAll('*').forEach(element => {
     element.style.boxSizing = 'border-box';
+    element.style.overflow = 'visible'; // Garante que não há estilos de overflow que possam ocultar o conteúdo
   });
   document.body.removeChild(document.getElementById("texto_extra"));
   var element = document.querySelector('html');
   html2pdf().set(opt).from(element).save();
 };
+
       document.querySelector("#btn_baixar_pdf").addEventListener(
         "click",baixar
      )

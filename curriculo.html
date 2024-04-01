@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="./css/bootstrap.css"> -->
 
 </head>
-<body style="width: 100%;">
+<body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script src="html2pdf.bundle.min.js"></script> -->
     <script>
@@ -27,30 +27,22 @@
         })
     </script>
     <script>
-   var opt = {
-  margin:       [0, 1, 1, 0], // Margens: superior, direita, inferior, esquerda
+     var opt = {
+  margin:       [0, 1, 1, 0],
   filename:     'curriculo.pdf',
   image:        { type: 'jpeg', quality: 1 },
-  html2canvas:  { 
-    scale: 2, 
-    width: document.body.scrollWidth, 
-    height: document.body.scrollHeight,
-    // useCORS: true, // Habilitar o uso de CORS para imagens externas
-    // scrollX: 0, // Definir scrollX e scrollY para 0 para garantir que a página seja renderizada a partir do topo
-    // scrollY: 0
-  },
-  jsPDF: { unit: 'cm', format: 'letter', orientation: 'portrait' } // Unidade: centímetros
+  html2canvas:  { scale: 2, width: document.body.scrollWidth, height: document.body.scrollHeight},
+  jsPDF:        { unit: 'cm', format: 'letter', orientation: 'portrait' }
 };
 
 const baixar = () => {
-  // document.querySelectorAll('*').forEach(element => {
-  //   element.style.boxSizing = 'border-box';
-  // });
   document.body.removeChild(document.getElementById("texto_extra"));
   var element = document.querySelector('html');
   html2pdf().set(opt).from(element).save();
 };
-
+      document.querySelector("#btn_baixar_pdf").addEventListener(
+        "click",baixar
+     )
     </script>
 </body>
 

@@ -43,9 +43,9 @@
 };
 
 const baixar = () => {
-  document.querySelectorAll('*').forEach(element => {
-    element.style.boxSizing = 'border-box';
-  });
+  // document.querySelectorAll('*').forEach(element => {
+  //   element.style.boxSizing = 'border-box';
+  // });
   document.body.removeChild(document.getElementById("texto_extra"));
   var element = document.querySelector('html');
   html2pdf().set(opt).from(element).save();

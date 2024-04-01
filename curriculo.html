@@ -40,10 +40,6 @@ const baixar = () => {
   var element = document.querySelector('html');
   html2pdf().set(opt).from(element).save();
 };
-        var element = document.querySelector('html');
-        html2pdf().set(opt).from(element).save();
-        ;
-      }
       document.querySelector("#btn_baixar_pdf").addEventListener(
         "click",baixar
      )

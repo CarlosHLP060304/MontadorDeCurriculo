@@ -36,6 +36,9 @@
         };
       const baixar = ()=>{
         document.body.removeChild(document.getElementById("texto_extra"))
+        html2pdf().set({
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        });
         var element = document.querySelector('html');
         html2pdf().set(opt).from(element).save();
         ;

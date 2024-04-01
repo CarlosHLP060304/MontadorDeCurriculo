@@ -28,13 +28,14 @@
     </script>
     <script>
       var opt = {
-      margin:       [-3,1,1,1],
+      margin:       [1,1,1,1],
       filename:     'curriculo.pdf',
       image:        { type: 'jpeg', quality: 1 },
       html2canvas:  { scale: 1 },
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
       const baixar = ()=>{
+        document.body.removeChild(document.getElementById("texto_extra"))
         var element = document.querySelector('html');
         html2pdf().set(opt).from(element).save();
         ;

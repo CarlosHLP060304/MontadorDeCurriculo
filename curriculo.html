@@ -26,34 +26,7 @@
           }
         })
     </script>
-    <script>
-
-      document.querySelector("#btn_baixar_pdf").addEventListener(
-        "click",function htmlToPdf() {
-    const pdf = new jsPDF('p', 'mm', 'a4');
-
-    // Get the HTML element to convert
-    const htmlElement = document.getElementsByTagName("html")
-
-    // Convert the HTML to a canvas
-    html2canvas(htmlElement).then((canvas) => {
-        // Get the width and height of the canvas
-        const imgData = canvas.toDataURL('image/png');
-        const pageHeight = pdf.internal.pageSize.getHeight();
-        const pageWidth = pdf.internal.pageSize.getWidth();
-
-        // Calculate the scale factor to fit the canvas on a single page
-        const scaleFactor = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
-
-        // Add the canvas to the PDF at the correct scale and coordinates
-        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width * scaleFactor, canvas.height * scaleFactor);
-
-        // Save the PDF file
-        pdf.save('document.pdf');
-    });
-}
-     )
-    </script>
+  
 </body>
 
 <style>

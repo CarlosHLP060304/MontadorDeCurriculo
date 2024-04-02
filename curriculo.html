@@ -8,7 +8,8 @@
 
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
        <script>
         document.body.innerHTML = localStorage.getItem("curriculo")
         const texto_extra =  `<div class="d-flex justify-content-center bg-warning align-itens-center p-2" id="texto_extra">
@@ -27,37 +28,30 @@
     </script>
     <script>
 
-
-const baixar = () => {
-  
-  
-  
-  document.body.removeChild(document.getElementById("texto_extra"));
-  
-  const html2pdf = require('html2pdf.js');
-  var element2 = document.querySelector('html'); // Get the HTML element you want to convert to PDF
-const opt = {
-  margin: 1,
-  filename: 'my-document.pdf',
-  image: { type: 'jpeg', quality: 0.98 },
-  html2canvas: { scale: 2 },
-  jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-};
-
-html2pdf().set(opt).from(element).save();
-  
-  
-  };
-
-
-
-
-
-
-
-
       document.querySelector("#btn_baixar_pdf").addEventListener(
-        "click",baixar
+        "click",function htmlToPdf() {
+    const pdf = new jsPDF('p', 'mm', 'a4');
+
+    // Get the HTML element to convert
+    const htmlElement = document.getElementById('content');
+
+    // Convert the HTML to a canvas
+    html2canvas(htmlElement).then((canvas) => {
+        // Get the width and height of the canvas
+        const imgData = canvas.toDataURL('image/png');
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const pageWidth = pdf.internal.pageSize.getWidth();
+
+        // Calculate the scale factor to fit the canvas on a single page
+        const scaleFactor = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+
+        // Add the canvas to the PDF at the correct scale and coordinates
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width * scaleFactor, canvas.height * scaleFactor);
+
+        // Save the PDF file
+        pdf.save('document.pdf');
+    });
+}
      )
     </script>
 </body>

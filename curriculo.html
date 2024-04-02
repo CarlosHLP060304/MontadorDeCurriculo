@@ -33,7 +33,7 @@
     const pdf = new jsPDF('p', 'mm', 'a4');
 
     // Get the HTML element to convert
-    const htmlElement = document.body
+    const htmlElement = document.getElementsByTagName("html")
 
     // Convert the HTML to a canvas
     html2canvas(htmlElement).then((canvas) => {
